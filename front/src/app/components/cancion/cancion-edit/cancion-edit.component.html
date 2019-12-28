@@ -1,0 +1,89 @@
+<div class="row" style="margin-top:50px">
+    <div class="col-lg-3">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active" [routerLink]="['/canciones']">Listado de Canciones</a>
+            <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/cancion/create']">Registro de Cancion</a>
+            <a href="#" class="list-group-item list-group-item-action">Opciones</a>   
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="card">
+            <div class="card-header">
+                Edicion de Cancion
+            </div>
+            <div class="card-body">
+                <form [formGroup]="cancion" (ngSubmit)="onSubmit()">
+                    <div class="alert alert-success" role="alert" *ngIf="status =='success'">
+                        Se registro el album correctamente
+                      </div>
+                      <div class="alert alert-danger" role="alert" *ngIf="status == 'error'">
+                        Hubo un error al registrar el album
+                      </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Numero</label>
+                                <input type="number" class="form-control" formControlName="numero" [(ngModel)]="get_cancion.numero" required>                      
+                                <div *ngIf="numero.invalid && (numero.dirty || numero.touched)">
+                                    <div class="invalid-feedback" *ngIf="numero.errors.required">
+                                        El numero es requeridos
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Duracion</label>
+                                <input type="text" class="form-control" formControlName="duracion" [(ngModel)]="get_cancion.duracion" required>
+                                                   
+                                <div *ngIf="duracion.invalid && (duracion.dirty || duracion.touched)">
+                                    <div class="invalid-feedback" *ngIf="duracion.errors.required">
+                                        La duracion es requeridos
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre" [(ngModel)]="get_cancion.nombre" required>  
+                        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                            <div class="invalid-feedback" *ngIf="nombre.errors.required">
+                                El nombre es requeridos
+                            </div>
+                            <div class="invalid-feedback" *ngIf="nombre.errors.maxlength">
+                                El nombre deben tener maximo 100 caracteres
+                            </div>
+                            <div class="invalid-feedback" *ngIf="nombre.errors.minlength">
+                                El nombre deben tener minimo 1 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Archivo</label>
+                                    <input type="file" #file class="form-control"  (change)="imgSelected($event)" required>  
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Album</label><br>
+                                <select class="mdb-select md-form" searchable="Albumes" formControlName="album" [(ngModel)]="get_cancion.album">
+                                    <option value="" disabled selected>Selecciona el album</option>
+                                    <option value="{{item._id}}" *ngFor="let item of albumes">{{item.titulo}}</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+</div>

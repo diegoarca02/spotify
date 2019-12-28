@@ -1,0 +1,11 @@
+<app-layouts></app-layouts>
+
+<div class="container">
+  <router-outlet></router-outlet>
+  
+</div>
+<div *ngIf="identity">
+  <div *ngIf="identity.role == 'USUARIO'">
+    <app-player class="player"></app-player>
+  </div>
+</div>

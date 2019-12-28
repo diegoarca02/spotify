@@ -1,0 +1,64 @@
+<div class="row" style="margin-top:50px">
+    <div class="col-lg-4">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action" [routerLink]="['/artistas']" routerLinkActive="list-group-item list-group-item-action active">Listado de Artistas</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['/artista/create']" routerLinkActive="list-group-item list-group-item-action active">Registro de Artista</a>
+            <a class="list-group-item list-group-item-action">Opciones</a>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                Registro de Artista
+            </div>
+            <div class="card-body">
+                <form [formGroup]="artista" (ngSubmit)="onSubmit()">
+                    <div class="alert alert-success" role="alert" *ngIf="status =='success'">
+                        Se registro el artista correctamente
+                      </div>
+                      <div class="alert alert-danger" role="alert" *ngIf="status == 'error'">
+                        Hubo un error al registrar el artista
+                      </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nombres</label>
+                        <input type="text" class="form-control" formControlName="nombres" placeholder="Nombres Completos" required>                      
+                        <div *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
+                            <div class="invalid-feedback" *ngIf="nombres.errors.required">
+                                Los nombres son requeridos
+                            </div>
+                            <div class="invalid-feedback" *ngIf="nombres.errors.maxlength">
+                                El nombre debe tener maximo 50 caracteres
+                            </div>
+                            <div class="invalid-feedback" *ngIf="nombres.errors.minlength">
+                                El nombre debe tener minimo 2 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Descripcion</label>
+                        <textarea class="form-control" formControlName="descripcion" placeholder="Biografia del artista" required></textarea>
+                        <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                            <div class="invalid-feedback" *ngIf="descripcion.errors.required">
+                                La descripcion son requeridos
+                            </div>
+                            <div class="invalid-feedback" *ngIf="descripcion.errors.maxlength">
+                                La descripcion deben tener maximo 500 caracteres
+                            </div>
+                            <div class="invalid-feedback" *ngIf="descripcion.errors.minlength">
+                                La descripcion deben tener minimo 5 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Imagen</label>
+                        <input type="file" #file class="form-control"  (change)="imgSelected($event)" required>
+                        <img [src]="imgselected || url+'/artista/img/null'" style="width:100%">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+</div>

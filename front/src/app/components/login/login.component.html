@@ -1,0 +1,32 @@
+<div class="row mt-4" *ngIf="error">
+    <div class="col-lg-4 mx-auto mt-4" >
+        <div class="alert alert-danger" role="alert">
+            Credenciales incorrectas
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 50px;">
+
+    <div class="col-lg-5 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="user" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Correo Electrónico</label>
+                        <input type="email" class="form-control" formControlName="email" required>  
+                      
+                    </div>
+                 
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Contraseña</label>
+                      <input type="password" class="form-control" formControlName="password" required>
+                      
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>

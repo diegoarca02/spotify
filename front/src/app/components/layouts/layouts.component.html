@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="../../../assets/img/logo.png" width="30" height="30" alt="">
+          Spotify</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="identity">
+        <ul class="navbar-nav mr-auto" *ngIf="identity.role == 'ADMIN'">
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['/artistas']" routerLinkActive="router-link-active" >Artistas</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['/albumes']" routerLinkActive="router-link-active" >Albums</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['/canciones']" routerLinkActive="router-link-active" >Canciones</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto" *ngIf="identity.role == 'USUARIO'">
+          <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/inicio']" routerLinkActive="router-link-active" >Inicio</a>
+          </li>
+         
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item active" *ngIf="!identity">
+                <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active" >Iniciar Sesión</a>
+            </li>
+            <li class="nav-item active" *ngIf="!identity">
+                <a class="nav-link" [routerLink]="['/registro']" routerLinkActive="router-link-active" >Registro</a>
+            </li>
+            <li class="nav-item dropdown active" *ngIf="identity">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Cuenta
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" (click)="logout()">Cerrar Sesion</a>
+                  
+                </div>
+              </li>
+        </ul>
+        </div>
+    </div>
+  </nav>

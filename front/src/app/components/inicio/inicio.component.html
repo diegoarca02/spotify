@@ -1,0 +1,38 @@
+<div class="row" style="margin-top:80px">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-10">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <th>Poster</th>
+                        <th>Cancion</th>
+                        <th>Album</th>
+                        <th>Artista</th>
+                        <th>Reproductor</th>
+                    </thead>
+                    <tbody *ngFor="let item of canciones" >
+                        <td>
+                            <img [src]="url+'album/img/'+item.album.portada" style="width:50px">
+                        </td>
+                        <td>
+                            <b>{{item.nombre}}</b>
+                        </td>
+                        <td>
+                            <b>{{item.album.titulo}}</b>
+                        </td>
+                        <td>
+                            <b>{{item.album.artista.nombres}}</b>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" (click)="player(item._id)"><i class="fas fa-play"></i></button>
+                        </td>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+
+<div class="row justify-content-md-center" style="margin-top:50px">
+  
+    <div class="col-lg-5 align-self-center">
+        <div class="card">
+            <div class="card-body">
+
+                <form [formGroup]="user" (ngSubmit)="onSubmit()">
+                    <div class="alert alert-danger" role="alert" *ngIf="status">
+                        Complete el formulario correctamente
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nombres</label>
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="Nombres Completos" required>
+                        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                            <div class="invalid-feedback" *ngIf="nombre.errors.required">
+                                Nombre es requerido
+                            </div>
+                            <div class="invalid-feedback" *ngIf="nombre.errors.maxlength">
+                                El nombre debe tener maximo 30 caracteres
+                            </div>
+                            <div class="invalid-feedback" *ngIf="nombre.errors.minlength">
+                                El nombre debe tener minimo 5 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Apellidos</label>
+                        <input type="text" class="form-control" formControlName="apellidos" placeholder="Apellidos Completos" required>
+                        <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                            <div class="invalid-feedback" *ngIf="apellidos.errors.required">
+                                Apellidos son requeridos
+                            </div>
+                            <div class="invalid-feedback" *ngIf="apellidos.errors.maxlength">
+                                Los Apellidos deben tener maximo 30 caracteres
+                            </div>
+                            <div class="invalid-feedback" *ngIf="apellidos.errors.minlength">
+                                Los Apellidos deben tener minimo 5 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Correo</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Correo electronico" required>
+                        <div class="invalid-feedback" *ngIf="v_email">
+                            {{v_email}}
+                        </div>
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                            <div class="invalid-feedback" *ngIf="email.errors.required">
+                                Correo es requerido
+                            </div>
+                            
+                            <div class="invalid-feedback" *ngIf="email.errors.maxlength">
+                                El Correo debe tener maximo 30 caracteres
+                            </div>
+                            <div class="invalid-feedback" *ngIf="email.errors.minlength">
+                                El Correo debe tener minimo 5 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Contraseña</label>
+                        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" required>
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                            <div class="invalid-feedback" *ngIf="password.errors.required">
+                                Contraseña es requerido
+                            </div>
+                            <div class="invalid-feedback" *ngIf="password.errors.maxlength">
+                                La Contraseña debe tener maximo 20 caracteres
+                            </div>
+                            <div class="invalid-feedback" *ngIf="password.errors.minlength">
+                                La Contraseña debe tener minimo 6 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <button type="submit" class="btn btn-success" style="margin:auto">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
